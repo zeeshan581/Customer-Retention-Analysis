@@ -1,4 +1,4 @@
-# Cohort Analysis on Retention Rate (12 months)
+# CohortRetension Analysis
 
 This repository contains a cohort analysis to evaluate customer retention rates based on transaction data from the `EcomSales, Product, Region, Customer` tables. The analysis tracks customers' first purchase dates and calculates their retention over time using monthly intervals.
 
@@ -33,8 +33,6 @@ The "Return Period" is calculated using months as the unit, determined by the `D
 ### Step 4: Calculate Return Period
 Computed the difference in months between the first transaction date and subsequent orders using `DATEDIFF`
 
-![Step 4](https://github.com/annettelynn/SQL-cohort-analysis-ecomsales-retention/blob/main/step3-cohort.png)
-
 
 ```sql
 WITH customer_cte AS
@@ -55,9 +53,6 @@ ORDER BY OrderDate DESC
 
 ### Step 5: Calculate Cohort
 Grouped customers by their first order month `First_OrderMonth` and counted distinct customers returning at each month interval (0 to 12 months) for the year 2020.
-
-![Step 5](https://github.com/annettelynn/SQL-cohort-analysis-ecomsales-retention/blob/main/step5-cohort1.png)
-
 
 ```sql
 WITH customer_cte AS
@@ -99,7 +94,6 @@ GROUP BY First_OrderMonth
 ### Step 6: Calculate Retention Rate
 Calculated the retention rate as a percentage of customers returning each month relative to the initial cohort size (month 0)
 
-![Step 6](https://github.com/annettelynn/SQL-cohort-analysis-ecomsales-retention/blob/main/outcome.png)
 ```sql
 WITH customer_cte AS
 (SELECT DISTINCT   
